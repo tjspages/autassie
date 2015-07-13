@@ -17,9 +17,10 @@
     <!-- Custom CSS -->
     <link href="css/landing-page.css" rel="stylesheet">
 
+    <link href="css/jquery-ui.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -84,10 +85,10 @@
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
-                                <a href="#" class="btn btn-default btn-lg"><i class="fa fa-weibo fa-fw"></i> <span class="network-name">微博</span></a>
+                                <a  title="敬请期待" id="hide-option" href="#about" class="btn btn-default btn-lg"><i class="fa fa-weibo fa-fw"></i> <span class="network-name">微博</span></a>
                             </li>
                             <li>
-                                <a href="#" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">公众号</span></a>
+                            <a id="wechat" href="#" class="btn btn-default btn-lg" data-geo=""><i class="fa fa-github fa-fw" ></i> <span class="network-name" >公众号</span></a>
                             </li>
                         </ul>
                     </div>
@@ -255,9 +256,11 @@
                         <li>
                         <a href="#safe">安全保证</a>
                         </li>
+                        <li class="footer-menu-divider">&sdot;</li>
                         <li>
                         <a href="#spec">规格尺寸</a>
                         </li>
+                        <li class="footer-menu-divider">&sdot;</li>
                         <li>
                         <a href="#72">72小时</a>
                         </li>
@@ -269,7 +272,12 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src='js/jquery.js'></script>
+    <script src='js/jquery-ui.js'></script>
+    <!--
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    -->
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
@@ -290,6 +298,43 @@
         });
     </script>
 
-</body>
+    <script>
+        $(function() {
+            $( "#show-option" ).tooltip({
+                show: {
+                    effect: "slideDown",
+                    delay: 250
+                }
+            });
+            $( "#hide-option" ).tooltip({
+                hide: {
+                    effect: "explode",
+                    delay: 250
+                }
+            });
+            $( "#open-event" ).tooltip({
+                show: null,
+                position: {
+                    my: "left top",
+                    at: "left bottom"
+                },
+                open: function( event, ui ) {
+                    ui.tooltip.animate({ top: ui.tooltip.position().top + 10 }, "fast" );
+                }
+            });
+            $( "#wechat" ).tooltip({
+                items: "[data-geo]",
+                content: function(){
+                    return "<img class='map' alt='" + "xxx" +
+                    "' src='http://maps.google.com/maps/api/staticmap?" +
+                    "zoom=11&size=350x350&maptype=terrain&sensor=false&center=" +
+                    'xxx' + "'>";
+                                        //          return '<img src="xxx">';
+                    }
+                });
+            });
+        </script>
+
+    </body>
 
 </html>
